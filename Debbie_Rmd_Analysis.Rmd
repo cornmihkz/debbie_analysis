@@ -1,0 +1,40 @@
+---
+title: "Debbie_Analysis"
+author: "Mihkail"
+date: "2025-04-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("tidyverse")
+library("tidymodels")
+library('ggplot2')
+library('dplyr')
+
+debbie_data1 <- read_csv("Debbie1.csv")
+```
+
+```{r}
+# Pearson correlation between 2 variables
+cor(debbie_data1$Age, debbie_data1$Score)
+```
+```{r}
+# scatterplot
+ggplot(debbie_data1) +
+  aes(x=Age, y=Score) + 
+  geom_point(colour = "#0c4c8a",
+             size = 2) +
+  labs(title="Correlation plot between Age and Score")
+  theme_bw()
+  
+ggsave('deb_corr_plot.jpeg')
+```
+
+
+```{r}
+# Pearson correlation test
+test <- cor.test(debbie_data1$Age, debbie_data1$Score)
+test
+```
+
